@@ -1,0 +1,306 @@
+/* Coding Profiles Section */
+.coding-profiles-section {
+  background-color: var(--bg-primary);
+}
+
+.profiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 32px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.profile-card {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.github-icon {
+  background: linear-gradient(135deg, #24292e, #000000);
+}
+
+.leetcode-icon {
+  background: linear-gradient(135deg, #FFA116, #FF6C37);
+}
+
+.profile-title-section {
+  flex: 1;
+}
+
+.profile-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.profile-subtitle {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+}
+
+/* Loading and Error States */
+.loading-state,
+.error-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  gap: 16px;
+  min-height: 200px;
+}
+
+.loading-state p,
+.error-state p {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+}
+
+.error-message {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.fallback-note {
+  color: var(--text-tertiary);
+  font-size: 0.8125rem;
+  font-style: italic;
+}
+
+/* GitHub Stats */
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px 12px;
+  background-color: var(--bg-secondary);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.stat-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-icon {
+  color: var(--accent-primary);
+  margin-bottom: 12px;
+}
+
+.stat-content {
+  width: 100%;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* LeetCode Stats */
+.leetcode-total {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  background: linear-gradient(135deg, #FFA11615, #FF6C3715);
+  border-radius: 12px;
+  border: 2px solid #FFA11630;
+}
+
+.total-icon {
+  color: #FFA116;
+  width: 40px;
+  height: 40px;
+}
+
+.total-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.total-label {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.leetcode-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.difficulty-item {
+  padding: 16px;
+  background-color: var(--bg-secondary);
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+.difficulty-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.difficulty-label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.difficulty-count {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.difficulty-bar {
+  height: 8px;
+  background-color: var(--bg-tertiary);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.difficulty-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.6s ease;
+}
+
+.difficulty-item.easy .difficulty-count {
+  color: #00b8a3;
+}
+
+.difficulty-item.easy .difficulty-fill {
+  background: linear-gradient(90deg, #00b8a3, #00d4b8);
+}
+
+.difficulty-item.medium .difficulty-count {
+  color: #ffc01e;
+}
+
+.difficulty-item.medium .difficulty-fill {
+  background: linear-gradient(90deg, #ffc01e, #ffd666);
+}
+
+.difficulty-item.hard .difficulty-count {
+  color: #ef4743;
+}
+
+.difficulty-item.hard .difficulty-fill {
+  background: linear-gradient(90deg, #ef4743, #ff6a67);
+}
+
+/* Profile Link Button */
+.profile-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.profile-link svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .profiles-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-card {
+    padding: 24px;
+  }
+
+  .profile-icon {
+    width: 48px;
+    height: 48px;
+  }
+
+  .profile-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .profile-title {
+    font-size: 1.25rem;
+  }
+
+  .profile-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .stat-item {
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .stat-icon {
+    margin-bottom: 0;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+  }
+
+  .total-value {
+    font-size: 2rem;
+  }
+
+  .difficulty-count {
+    font-size: 1.125rem;
+  }
+}

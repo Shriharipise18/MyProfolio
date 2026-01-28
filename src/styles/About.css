@@ -1,0 +1,142 @@
+/* About Section */
+.about-section {
+  background-color: var(--bg-secondary);
+}
+
+.about-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Professional Summary */
+.about-summary {
+  margin-bottom: 48px;
+  text-align: center;
+}
+
+.about-summary-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.about-summary-text {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Skills */
+.skills-container {
+  margin-top: 24px;
+}
+
+.skills-main-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.skill-category {
+  padding: 28px;
+}
+
+.skill-category-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.skill-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.skill-icon-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.skill-category-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-tag {
+  padding: 8px 16px;
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.skill-tag:hover {
+  background-color: var(--accent-primary);
+  color: #ffffff;
+  transform: translateY(-2px);
+  border-color: var(--accent-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-summary-title,
+  .skills-main-title {
+    font-size: 1.5rem;
+  }
+
+  .about-summary-text {
+    font-size: 1rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-category {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-summary {
+    margin-bottom: 32px;
+  }
+
+  .skill-category-header {
+    margin-bottom: 16px;
+  }
+
+  .skill-tag {
+    padding: 6px 12px;
+    font-size: 0.8125rem;
+  }
+}

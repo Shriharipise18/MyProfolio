@@ -1,0 +1,5 @@
+/* Import fonts and theme */
+@import './fonts.css';
+@import './App.css';
+
+/* Additional global styles if needed */
