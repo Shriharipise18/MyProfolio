@@ -18,7 +18,7 @@ const Contact = () => {
 
   // REPLACE THIS WITH YOUR ACTUAL FORMSPREE FORM ID
   // Example: "f/xyzkqwer" (get from https://formspree.io)
-  const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORMSPREE_ID";
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/xojnwqbj";
 
   const onSubmit = async (data) => {
     try {
