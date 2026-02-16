@@ -11,70 +11,70 @@ export const personalInfo = {
 };
 
 export const about = {
-  summary: "Experienced Full-Stack Software Engineer with 5+ years of expertise in building scalable web applications. Specialized in React, Node.js, and cloud technologies. Proven track record of delivering high-quality solutions in fast-paced environments. Strong problem-solving skills with a focus on writing clean, maintainable code and creating exceptional user experiences.",
+  summary: "I’m a full-stack developer and problem solver focused on building scalable, real-world products. I’ve developed social platforms with real-time messaging, geolocation alerts, and AI-powered developer tools, emphasizing performance, security, and user experience.\n\nI work extensively with Node.js, Express, MongoDB, SQL, Redis, and deploy microservices using Docker and Kubernetes. During my internship at VOIS, I built data pipelines, dashboards, and optimized SQL to drive business insights.\n\nWith strong foundations in DSA, system design, and competitive programming, I blend analytical thinking with execution and am actively exploring DevOps and AI to build software that scales in impact.",
   skills: {
-  languages: [
-    "C",
-    "C++",
-    "Java",
-    "JavaScript",
-    "Python"
-  ],
+    languages: [
+      "C",
+      "C++",
+      "Java",
+      "JavaScript",
+      "Python"
+    ],
 
-  frontend: [
-    "React.js",
-    "HTML",
-    "CSS",
-    "EJS"
-  ],
+    frontend: [
+      "React.js",
+      "HTML",
+      "CSS",
+      "EJS"
+    ],
 
-  backend: [
-    "Node.js",
-    "Express.js",
-    "REST APIs",
-    "JWT Authentication"
-  ],
+    backend: [
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+      "JWT Authentication"
+    ],
 
-  database: [
-    "MySQL",
-    "MongoDB",
-    "Mongoose",
-    "PostgreSQL",
-    "Redis"
-  ],
+    database: [
+      "MySQL",
+      "MongoDB",
+      "Mongoose",
+      "PostgreSQL",
+      "Redis"
+    ],
 
-  dataAnalytics: [
-    "Pandas",
-    "NumPy",
-    "Matplotlib",
-    "Seaborn",
-    "Scikit-learn",
-    "Jupyter Notebook",
-    "Google Colab",
-    "PowerBI"
-  ],
+    dataAnalytics: [
+      "Pandas",
+      "NumPy",
+      "Matplotlib",
+      "Seaborn",
+      "Scikit-learn",
+      "Jupyter Notebook",
+      "Google Colab",
+      "PowerBI"
+    ],
 
-  tools: [
-    "Git",
-    "GitHub",
-    "Docker",
-    "Postman",
-    "Swagger"
-  ],
+    tools: [
+      "Git",
+      "GitHub",
+      "Docker",
+      "Postman",
+      "Swagger"
+    ],
 
-  coursework: [
-    "Data Structures & Algorithms",
-    "Object-Oriented Programming",
-    "Operating Systems",
-    "DBMS",
-    "Computer Networks"
-  ],
+    coursework: [
+      "Data Structures & Algorithms",
+      "Object-Oriented Programming",
+      "Operating Systems",
+      "DBMS",
+      "Computer Networks"
+    ],
 
-  competitiveProgramming: [
-    "LeetCode (1600 Rating)",
-    "CodeChef (2★ – 1566)"
-  ]
-}
+    competitiveProgramming: [
+      "LeetCode (1600 Rating)",
+      "CodeChef (2★ – 1566)"
+    ]
+  }
 };
 
 export const projects = [
@@ -90,7 +90,7 @@ export const projects = [
     id: 2,
     title: "Ai-code-documentation-collaboration-CodeDocs",
     description: "An AI-powered platform that automatically generates clear, concise documentation from source code while enabling developers to write, run, and test programs. It supports real-time collaborative coding, improving productivity, code understanding, and team-based software development workflows.",
-    tech: ["Node.js", "Express.js", "Flask (Python)", "MongoDB", "LLM (Large Language Model)","Generative AI Engine"],
+    tech: ["Node.js", "Express.js", "Flask (Python)", "MongoDB", "LLM (Large Language Model)", "Generative AI Engine"],
     github: "https://github.com/Shriharipise18/Ai-code-documentation-collaboration-CodeDocs"
   },
   {
@@ -111,7 +111,7 @@ export const projects = [
     id: 5,
     title: "SocialX",
     description: "Engineered a scalable MERN stack social platform with real-time interactions and Redux-based engagement features.Implemented Docker-Kubernetes microservices using REST and Socket.IO, improving system throughput by 40%.Built a Redis-backed geolocation emergency alert system delivering messages under 100ms latency.",
-    tech: ["Node,js", "Express.js", "Redis", "MongoDb", "React","kubernetes","Socket.io"],
+    tech: ["Node,js", "Express.js", "Redis", "MongoDb", "React", "kubernetes", "Socket.io"],
     github: "https://github.com/Shriharipise18/SocialX"
   },
   {
