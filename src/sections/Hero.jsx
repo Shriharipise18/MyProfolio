@@ -89,12 +89,44 @@
 // };
 
 // export default Hero;
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FiArrowRight, FiDownload } from "react-icons/fi";
 import { personalInfo } from "../data/portfolio";
 import "../styles/Hero.css";
 
 const Hero = () => {
+  const [text, setText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  const roles = ["Full-Stack Developer", "Data Analyst", "AI Engineer"];
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const i = loopNum % roles.length;
+      const fullText = roles[i];
+
+      setText(
+        isDeleting
+          ? fullText.substring(0, text.length - 1)
+          : fullText.substring(0, text.length + 1)
+      );
+
+      setTypingSpeed(isDeleting ? 30 : 150);
+
+      if (!isDeleting && text === fullText) {
+        setTimeout(() => setIsDeleting(true), 2000); // Pause at end
+      } else if (isDeleting && text === "") {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, loopNum, typingSpeed, roles]);
+
   const scrollToProjects = () => {
     const element = document.getElementById("projects");
     if (element) {
@@ -121,7 +153,10 @@ const Hero = () => {
             </div>
 
             <h1 className="hero-name fade-in">{personalInfo.name}</h1>
-            <h2 className="hero-role fade-in">{personalInfo.role}</h2>
+            <h2 className="hero-role fade-in">
+              <span className="typing-text">{text}</span>
+              <span className="cursor">|</span>
+            </h2>
 
             <p className="hero-tagline fade-in">
               {personalInfo.tagline}
