@@ -102,7 +102,7 @@ export const projects = [
   },
   {
     id: 4,
-    title: "Baliraja Framer Helper",
+    title: "Baliraja(Farmer Helper)",
     description: "This platform enables farmers to modify and monitor watering of their farms.",
     tech: ["React", "Node.js", "ExpressJs", "MongoDB", "JWT"],
     github: "hhttps://github.com/Shriharipise18/Baliraja.o"
@@ -136,7 +136,7 @@ export const education = [
   {
     id: 2,
     degree: "Higher Secondary Certification",
-    institution: "shri gajanan maharaj junior college,Shegaon",
+    institution: "Shri Gajanan Maharaj Junior College,Shegaon",
     year: "2022",
     achievements: [
       "78.83% in HSC Board Exams"
