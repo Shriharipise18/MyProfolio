@@ -126,11 +126,11 @@ export const projects = [
 export const education = [
   {
     id: 1,
-    degree: "Bachelor of Enginnering in Electronics and Telecommunication",
+    degree: "Bachelor of Engineering",
     institution: "Pune Institute of Computer Technology",
     year: "2023 - 2027",
     achievements: [
-      "Graduated with Honors (GPA: 9.3/10.0)"
+      "Current GPA: 9.3/10.0"
     ]
   },
   {
