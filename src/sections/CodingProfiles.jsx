@@ -17,12 +17,13 @@ const CodingProfiles = () => {
     const fetchGithubData = async () => {
       try {
         setGithubLoading(true);
-        const response = await fetch(`${githubConfig.apiUrl}${githubConfig.username}`);
-        
+        // Fetch GitHub Data
+        const response = await fetch(`/api/github?username=${githubConfig.username}`);
+
         if (!response.ok) {
           throw new Error('Failed to fetch GitHub data');
         }
-        
+
         const data = await response.json();
         setGithubData({
           username: data.login,
@@ -59,7 +60,7 @@ const CodingProfiles = () => {
     const fetchLeetcodeData = async () => {
       try {
         setLeetcodeLoading(true);
-        
+
         // LeetCode GraphQL query
         const query = `
           query getUserProfile($username: String!) {
@@ -75,7 +76,7 @@ const CodingProfiles = () => {
           }
         `;
 
-        const response = await fetch('/api/leetcode/graphql', {
+        const response = await fetch('/api/leetcode', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -91,7 +92,7 @@ const CodingProfiles = () => {
         }
 
         const result = await response.json();
-        
+
         if (result.data && result.data.matchedUser) {
           const submissions = result.data.matchedUser.submitStats.acSubmissionNum;
           const easyCount = submissions.find(s => s.difficulty === 'Easy')?.count || 0;
@@ -244,8 +245,8 @@ const CodingProfiles = () => {
                       <span className="difficulty-count">{leetcodeData.easy}</span>
                     </div>
                     <div className="difficulty-bar">
-                      <div 
-                        className="difficulty-fill" 
+                      <div
+                        className="difficulty-fill"
                         style={{ width: `${(leetcodeData.easy / leetcodeData.totalSolved) * 100}%` }}
                       ></div>
                     </div>
@@ -257,8 +258,8 @@ const CodingProfiles = () => {
                       <span className="difficulty-count">{leetcodeData.medium}</span>
                     </div>
                     <div className="difficulty-bar">
-                      <div 
-                        className="difficulty-fill" 
+                      <div
+                        className="difficulty-fill"
                         style={{ width: `${(leetcodeData.medium / leetcodeData.totalSolved) * 100}%` }}
                       ></div>
                     </div>
@@ -270,8 +271,8 @@ const CodingProfiles = () => {
                       <span className="difficulty-count">{leetcodeData.hard}</span>
                     </div>
                     <div className="difficulty-bar">
-                      <div 
-                        className="difficulty-fill" 
+                      <div
+                        className="difficulty-fill"
                         style={{ width: `${(leetcodeData.hard / leetcodeData.totalSolved) * 100}%` }}
                       ></div>
                     </div>
