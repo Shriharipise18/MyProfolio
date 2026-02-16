@@ -1,110 +1,81 @@
 import React, { useState } from 'react';
-import { FiMail, FiLinkedin, FiGithub, FiSend, FiCheck } from 'react-icons/fi';
+import { useForm } from 'react-hook-form';
+import { FiMail, FiLinkedin, FiGithub, FiSend, FiCheck, FiAlertCircle } from 'react-icons/fi';
 import { SiLeetcode } from 'react-icons/si';
 import { personalInfo } from '../data/portfolio';
 import '../styles/Contact.css';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm();
+
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [serverError, setServerError] = useState(null);
 
-  const validateForm = () => {
-    const newErrors = {};
+  // REPLACE THIS WITH YOUR ACTUAL FORMSPREE FORM ID
+  // Example: "f/xyzkqwer" (get from https://formspree.io)
+  const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORMSPREE_ID";
 
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
+  const onSubmit = async (data) => {
+    try {
+      setServerError(null);
 
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters';
-    }
-
-    return newErrors;
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-    // Clear error for this field when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }));
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    
-    const newErrors = validateForm();
-    
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-
-    setIsSubmitting(true);
-    
-    // Simulate form submission (replace with actual backend call)
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      setSubmitSuccess(true);
-      setIsSubmitting(false);
-      
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
       });
 
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setSubmitSuccess(false);
-      }, 5000);
-    }, 1500);
+      if (response.ok) {
+        setSubmitSuccess(true);
+        reset();
+
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setSubmitSuccess(false);
+        }, 5000);
+      } else {
+        const errorData = await response.json();
+        // If it's a 404, it likely means the user hasn't set up their ID yet
+        if (response.status === 404) {
+          throw new Error("Form ID not found. Please create a form at formspree.io and update the ID in the code.");
+        }
+        throw new Error(errorData.error || "Failed to send message");
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      setServerError(error.message || "Something went wrong. Please try again later.");
+    }
   };
 
   const socialLinks = [
-    { 
-      icon: <FiMail size={24} />, 
-      label: 'Email', 
+    {
+      icon: <FiMail size={24} />,
+      label: 'Email',
       href: `mailto:${personalInfo.email}`,
       value: personalInfo.email
     },
-    { 
-      icon: <FiLinkedin size={24} />, 
-      label: 'LinkedIn', 
+    {
+      icon: <FiLinkedin size={24} />,
+      label: 'LinkedIn',
       href: personalInfo.linkedin,
       value: 'LinkedIn Profile'
     },
-    { 
-      icon: <FiGithub size={24} />, 
-      label: 'GitHub', 
+    {
+      icon: <FiGithub size={24} />,
+      label: 'GitHub',
       href: personalInfo.github,
       value: 'GitHub Profile'
     },
-    { 
-      icon: <SiLeetcode size={24} />, 
-      label: 'LeetCode', 
+    {
+      icon: <SiLeetcode size={24} />,
+      label: 'LeetCode',
       href: personalInfo.leetcode,
       value: 'LeetCode Profile'
     }
@@ -122,7 +93,7 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="contact-form-container card fade-in">
             <h3 className="form-title">Send Me a Message</h3>
-            
+
             {submitSuccess && (
               <div className="success-message">
                 <FiCheck className="success-icon" />
@@ -130,7 +101,23 @@ const Contact = () => {
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="contact-form">
+            {serverError && (
+              <div className="error-message" style={{
+                backgroundColor: '#fee2e2',
+                color: '#b91c1c',
+                padding: '1rem',
+                borderRadius: '0.5rem',
+                marginBottom: '1rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem'
+              }}>
+                <FiAlertCircle />
+                <p>{serverError}</p>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit(onSubmit)} className="contact-form">
               <div className="form-group">
                 <label htmlFor="name" className="form-label">
                   Name *
@@ -138,13 +125,11 @@ const Contact = () => {
                 <input
                   type="text"
                   id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
                   className={`form-input ${errors.name ? 'input-error' : ''}`}
                   placeholder="Your full name"
+                  {...register("name", { required: "Name is required" })}
                 />
-                {errors.name && <span className="error-text">{errors.name}</span>}
+                {errors.name && <span className="error-text">{errors.name.message}</span>}
               </div>
 
               <div className="form-group">
@@ -154,13 +139,17 @@ const Contact = () => {
                 <input
                   type="email"
                   id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
                   className={`form-input ${errors.email ? 'input-error' : ''}`}
                   placeholder="your.email@example.com"
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /\S+@\S+\.\S+/,
+                      message: "Please enter a valid email address"
+                    }
+                  })}
                 />
-                {errors.email && <span className="error-text">{errors.email}</span>}
+                {errors.email && <span className="error-text">{errors.email.message}</span>}
               </div>
 
               <div className="form-group">
@@ -169,14 +158,18 @@ const Contact = () => {
                 </label>
                 <textarea
                   id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
                   className={`form-textarea ${errors.message ? 'input-error' : ''}`}
                   placeholder="Your message here..."
                   rows="6"
+                  {...register("message", {
+                    required: "Message is required",
+                    minLength: {
+                      value: 10,
+                      message: "Message must be at least 10 characters"
+                    }
+                  })}
                 ></textarea>
-                {errors.message && <span className="error-text">{errors.message}</span>}
+                {errors.message && <span className="error-text">{errors.message.message}</span>}
               </div>
 
               <button
